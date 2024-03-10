@@ -1,0 +1,135 @@
+# See https://github.com/check-spelling/check-spelling/wiki/Configuration-Examples:-patterns
+
+# Automatically suggested patterns
+# hit-count: 422 file-count: 70
+# GitHub SHAs (markdown)
+(?:\[`?[0-9a-f]+`?\]\(https:/|)/(?:www\.|)github\.com(?:/[^/\s"]+){2,}(?:/[^/\s")]+)(?:[0-9a-f]+(?:[-0-9a-zA-Z/#.]*|)\b|)
+
+# hit-count: 251 file-count: 77
+# https/http/file urls
+(?:\b(?:https?|ftp|file)://)[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]
+
+# hit-count: 213 file-count: 75
+# Python string prefix / binary prefix
+# Note that there's a high false positive rate, remove the `?=` and search for the regex to see if the matches seem like reasonable strings
+(?<!['"])\b(?:B|BR|Br|F|FR|Fr|R|RB|RF|Rb|Rf|U|UR|Ur|b|bR|br|f|fR|fr|r|rB|rF|rb|rf|u|uR|ur)['"](?=[A-Z]{3,}|[A-Z][a-z]{2,}|[a-z]{3,})
+
+# hit-count: 120 file-count: 21
+# hex digits including css/html color classes:
+(?:[\\0][xX]|\\u|[uU]\+|#x?|%23)[0-9_a-fA-FgGrR]*?[a-fA-FgGrR]{2,}[0-9_a-fA-FgGrR]*(?:[uUlL]{0,3}|[iu]\d+)\b
+
+# hit-count: 98 file-count: 27
+# in check-spelling@v0.0.22+, printf markers aren't automatically consumed
+# printf markers
+(?<!\\)\\(?:n|t(?!est))(?=[a-z]{2,})
+
+# hit-count: 67 file-count: 36
+# Non-English
+[a-zA-Z]*[ÀÁÂÃÄÅÆČÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæčçèéêëìíîïðñòóôõöøùúûüýÿĀāŁłŃńŅņŒœŚśŠšŜŝŸŽžź][a-zA-Z]{3}[a-zA-ZÀÁÂÃÄÅÆČÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæčçèéêëìíîïðñòóôõöøùúûüýÿĀāŁłŃńŅņŒœŚśŠšŜŝŸŽžź]*|[a-zA-Z]{3,}[ÀÁÂÃÄÅÆČÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæčçèéêëìíîïðñòóôõöøùúûüýÿĀāŁłŃńŅņŒœŚśŠšŜŝŸŽžź]|[ÀÁÂÃÄÅÆČÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæčçèéêëìíîïðñòóôõöøùúûüýÿĀāŁłŃńŅņŒœŚśŠšŜŝŸŽžź][a-zA-Z]{3,}
+
+# hit-count: 19 file-count: 5
+# libraries
+\blib(?!rar(?:ies|y))(?=[a-z])
+
+# hit-count: 14 file-count: 7
+# Compiler flags (Unix, Java/Scala)
+# Use if you have things like `-Pdocker` and want to treat them as `docker`
+(?:^|[\t ,>"'`=(])-(?:(?:J-|)[WX])(?=[A-Z]{2,}|[A-Z][a-z]|[a-z]{2,})
+
+# hit-count: 9 file-count: 5
+# hex runs
+\b[0-9a-fA-F]{16,}\b
+
+# hit-count: 8 file-count: 5
+# ANSI color codes
+(?:\\(?:u00|x)1[Bb]|\x1b|\\u\{1[Bb]\})\[\d+(?:;\d+|)m
+
+# hit-count: 8 file-count: 2
+# Lorem
+# Update Lorem based on your content (requires `ge` and `w` from https://github.com/jsoref/spelling; and `review` from https://github.com/check-spelling/check-spelling/wiki/Looking-for-items-locally )
+# grep '^[^#].*lorem' .github/actions/spelling/patterns.txt|perl -pne 's/.*i..\?://;s/\).*//' |tr '|' "\n"|sort -f |xargs -n1 ge|perl -pne 's/^[^:]*://'|sort -u|w|sed -e 's/ .*//'|w|review -
+# Warning, while `(?i)` is very neat and fancy, if you have some binary files that aren't proper unicode, you might run into:
+# ... Operation "substitution (s///)" returns its argument for non-Unicode code point 0x1C19AE (the code point will vary).
+# ... You could manually change `(?i)X...` to use `[Xx]...`
+# ... or you could add the files to your `excludes` file (a version after 0.0.19 should identify the file path)
+(?:(?:\w|\s|[,.])*\b(?i)(?:amet|consectetur|cursus|dolor|eros|ipsum|lacus|libero|ligula|lorem|magna|neque|nulla|suscipit|tempus)\b(?:\w|\s|[,.])*)
+
+# hit-count: 6 file-count: 3
+# GitHub actions
+\buses:\s+[-\w.]+/[-\w./]+@[-\w.]+
+
+# hit-count: 5 file-count: 4
+# IServiceProvider / isAThing
+\b(?:I|isA)(?=(?:[A-Z][a-z]{2,})+(?:[A-Z]|\b))
+
+# hit-count: 3 file-count: 1
+# Contributor
+\[[^\]]+\]\(https://github\.com/[^/\s"]+/?\)
+
+# hit-count: 2 file-count: 1
+# latex (check-spelling >= 0.0.22)
+\\\w{2,}\{
+
+# hit-count: 1 file-count: 1
+# Alternative printf
+# %s
+%(?:s(?=[a-z]{2,}))(?!%)(?=[_a-zA-Z]+(?!%)\b)(?=.*?['"])
+
+# hit-count: 1 file-count: 1
+# Windows short paths
+[/\\][^/\\]{5,6}~\d{1,2}[/\\]
+
+# hit-count: 1 file-count: 1
+# set arguments
+\b(?:bash|sh|set)(?:\s+-[abefimouxE]{1,2})*\s+-[abefimouxE]{3,}(?:\s+-[abefimouxE]+)*
+
+:(?:pypi|user):`.*?`
+
+\([A-Za-z/]+\)[a-z]+
+
+^\s*FAILED.*$
+
+(?:_|\b)(?:add(?!ition(?:al|)|itive|ress)|aio|another|arg(?!ument)|assert(?:ion|ing|)|auto(?:mati(?:cally|on))|base|by(?:te|)call|cap(?:abilities|ture|turing|fd|log|sys)|collect(?!ing|ion|ive|ors)|fixture|func(?!tion)|get(?:fixture|)|import(?!ing|ant)(?:or|)|is(?!sue|ort|olat)|my|name(?:d|space|)|new|unit(?:test|)|report(?:ing|)(?!ing|ers)|repr(?!od|e[cs])|run(?:test|)(?!ning|ner)|section|session|set(?:up|)(?!tings?|tle|up)|short(?![ceh])|should|show(?!ing)|skip(?:ped|)(?!pe[dr]|ping)|some|sys(?:tem(?!atic)|path|)(?!tem)|test(?:ing|)(?!ing|suite|slide|scenario)(?:s(?!upport)|)|version|worker(?:info|)|x+(?:code|ml|))(?=[a-z]{3,})
+
+# credits
+^\*([- ]\w+\.?){1,4}$
+
+# thanks
+\b[Tt]hanks( [A-Z]\w+)+
+
+# compatibility
+INCOVATION_DIR
+
+# Questionably acceptable forms of `in to`
+# Personally, I prefer `log into`, but people object
+# https://www.tprteaching.com/log-into-log-in-to-login/
+\b(?:[Ll]og|[Ss]ign) in to\b
+
+# to opt in
+\bto opt in\b
+
+# acceptable duplicates
+# ls directory listings
+[-bcdlpsw](?:[-r][-w][-SsTtx]){3}[\.+*]?\s+\d+\s+\S+\s+\S+\s+\d+\s+
+# mount
+\bmount\s+-t\s+(\w+)\s+\g{-1}\b
+# C types and repeated CSS values
+\s(auto|center|div|head|inherit|long|LONG|none|normal|not|solid|tail|thin|transparent|very)(?: \g{-1})+\s
+# C struct
+\bstruct\s+(\w+)\s+\g{-1}\b
+# go templates
+\s(\w+)\s+\g{-1}\s+\`(?:graphql|inject|json|yaml):
+# doxygen / javadoc / .net
+(?:[\\@](?:brief|groupname|t?param|return|retval)|(?:public|private|\[Parameter(?:\(.+\)|)\])(?:\s+(?:static|override|readonly|required|virtual))*)(?:\s+\{\w+\}|)\s+(\w+)\s+\g{-1}\s
+
+# Python package registry has incorrect spelling for macOS / Mac OS X
+"Operating System :: MacOS :: MacOS X"
+
+# Commit message -- Signed-off-by and friends
+^\s*(?:(?:Based-on-patch|Co-authored|Helped|Mentored|Reported|Reviewed|Signed-off)-by|Thanks-to): (?:[^<]*<[^>]*>|[^<]*)\s*$
+
+# Autogenerated revert commit message
+^This reverts commit [0-9a-f]{40}\.$
+
+# ignore long runs of a single character:
+\b([A-Za-z])\g{-1}{3,}\b
