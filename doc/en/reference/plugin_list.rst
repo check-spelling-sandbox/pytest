@@ -539,8 +539,8 @@ This list contains 1408 plugins.
    :pypi:`pytest-focus`                             A pytest plugin that alerts user of failed test cases with screen notifications                                                                                                                                                                                                                                                                                                         May 04, 2019    4 - Beta               pytest
    :pypi:`pytest-forbid`                                                                                                                                                                                                                                                                                                                                                                                                                    Mar 07, 2023    N/A                    pytest (>=7.2.2,<8.0.0)
    :pypi:`pytest-forcefail`                         py.test plugin to make the test failing regardless of pytest.mark.xfail                                                                                                                                                                                                                                                                                                                 May 15, 2018    4 - Beta               N/A
-   :pypi:`pytest-forward-compatability`             A name to avoid typosquating pytest-foward-compatibility                                                                                                                                                                                                                                                                                                                                Sep 06, 2020    N/A                    N/A
-   :pypi:`pytest-forward-compatibility`             A pytest plugin to shim pytest commandline options for fowards compatibility                                                                                                                                                                                                                                                                                                            Sep 29, 2020    N/A                    N/A
+   :pypi:`pytest-forward-compatability`             A name to avoid typosquating pytest-forward-compatibility                                                                                                                                                                                                                                                                                                                                Sep 06, 2020    N/A                    N/A
+   :pypi:`pytest-forward-compatibility`             A pytest plugin to shim pytest commandline options for forwards compatibility                                                                                                                                                                                                                                                                                                            Sep 29, 2020    N/A                    N/A
    :pypi:`pytest-frappe`                            Pytest Frappe Plugin - A set of pytest fixtures to test Frappe applications                                                                                                                                                                                                                                                                                                             Oct 29, 2023    4 - Beta               pytest>=7.0.0
    :pypi:`pytest-freezegun`                         Wrap tests with fixtures in freeze_time                                                                                                                                                                                                                                                                                                                                                 Jul 19, 2020    4 - Beta               pytest (>=3.0.0)
    :pypi:`pytest-freezer`                           Pytest plugin providing a fixture interface for spulec/freezegun                                                                                                                                                                                                                                                                                                                        Jun 21, 2023    N/A                    pytest >= 3.6
@@ -4987,14 +4987,14 @@ This list contains 1408 plugins.
      *status*: N/A,
      *requires*: N/A
 
-     A name to avoid typosquating pytest-foward-compatibility
+     A name to avoid typosquating pytest-forward-compatibility
 
   :pypi:`pytest-forward-compatibility`
      *last release*: Sep 29, 2020,
      *status*: N/A,
      *requires*: N/A
 
-     A pytest plugin to shim pytest commandline options for fowards compatibility
+     A pytest plugin to shim pytest commandline options for forwards compatibility
 
   :pypi:`pytest-frappe`
      *last release*: Oct 29, 2023,
